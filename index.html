@@ -32,21 +32,21 @@
   /* Messages */
   .message {
     position: absolute;
-    top: 40%;
     width: 100%;
     font-size: 2rem;
     color: #ff1a75;
     opacity: 0;
-    animation: fadeIn 2s forwards;
   }
 
-  .message:nth-child(2) { animation-delay: 5s; }
-  .message:nth-child(3) { animation-delay: 7s; }
-  .message:nth-child(4) { animation-delay: 9s; }
-  .message:nth-child(5) { animation-delay: 11s; }
+  .msg1 { top: 30%; animation: fadeSlide 2s forwards 5s; }
+  .msg2 { top: 38%; animation: fadeSlide 2s forwards 7s; }
+  .msg3 { top: 46%; animation: fadeSlide 2s forwards 9s; }
+  .msg4 { top: 54%; animation: fadeSlide 2s forwards 11s; }
+  .msg5 { top: 62%; animation: fadeSlide 2s forwards 13s; }
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
+  @keyframes fadeSlide {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
   }
 
   /* Confetti */
@@ -69,11 +69,11 @@
 <div id="heart">💖</div>
 
 <!-- Messages sequence -->
-<div class="message">Happy Birthday, Ayesha! 🎂</div>
-<div class="message">I Love You ❤️</div>
-<div class="message">You are my everything 💖</div>
-<div class="message">Forever yours ❤️</div>
-<div class="message">My heart belongs to you 💘</div>
+<div class="message msg1">Happy Birthday, Ayesha! 🎂</div>
+<div class="message msg2">I Love You ❤️</div>
+<div class="message msg3">You are my everything 💖</div>
+<div class="message msg4">Forever yours ❤️</div>
+<div class="message msg5">My heart belongs to you 💘</div>
 
 <script>
   // Generate confetti
