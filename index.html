@@ -1,67 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Happy Birthday ❤️</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: linear-gradient(135deg,#020617,#0f172a);
-      color: white;
-      text-align: center;
-      font-family: Arial;
-      overflow: hidden;
-    }
-    h1 { margin-top: 20px; }
-    #heart {
-      font-size: 60px;
-      position: absolute;
-      cursor: pointer;
-    }
-    #msg {
-      display: none;
-      padding: 20px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday!</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #ffe6f0;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+  }
+  #heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    background: url('https://i.ibb.co/4Y3vC5y/heart.png') no-repeat center/contain;
+    transform: translate(-50%, -50%);
+    animation: moveHeart 5s linear forwards;
+  }
+  @keyframes moveHeart {
+    0% { top: 50%; left: 50%; }
+    100% { top: 20%; left: 80%; }
+  }
+  #message {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    font-size: 2rem;
+    color: #ff1a75;
+    opacity: 0;
+    animation: fadeIn 2s forwards 5s;
+  }
+  #iLove {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    font-size: 2.5rem;
+    color: #ff0066;
+    opacity: 0;
+    animation: fadeIn 2s forwards 6s;
+  }
+  #cake {
+    position: absolute;
+    bottom: -200px;
+    left: 50%;
+    width: 150px;
+    transform: translateX(-50%);
+    transition: bottom 1s ease-out;
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ff1a75;
+    top: -10px;
+    animation: fall 3s linear infinite;
+  }
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes fall {
+    0% { top: -10px; }
+    100% { top: 100vh; }
+  }
+</style>
 </head>
 <body>
 
-<h1>Catch the Heart 💖</h1>
-<p>Tap the heart 5 times</p>
-<p>Score: <span id="score">0</span></p>
-
-<div id="heart">❤️</div>
-
-<div id="msg">
-  <h1>🎉 Happy Birthday 🎂</h1>
-  <p>You didn’t just catch the heart…</p>
-  <p>You already own it 💖</p>
-  <p>Stay happy, stay mine 😌</p>
-</div>
+<div id="heart"></div>
+<div id="message">Happy Birthday, Ayesha 🎂💖</div>
+<div id="iLove">I Love You 💌</div>
+<img id="cake" src="https://i.ibb.co/3y0T1Vg/cake.png" alt="Cake">
 
 <script>
-  let score = 0;
-  const heart = document.getElementById("heart");
-  const scoreText = document.getElementById("score");
-  const msg = document.getElementById("msg");
+  // Cake drop
+  setTimeout(() => {
+    document.getElementById('cake').style.bottom = '50px';
+  }, 5000);
 
-  function moveHeart() {
-    heart.style.left = Math.random() * (window.innerWidth - 60) + "px";
-    heart.style.top = Math.random() * (window.innerHeight - 60) + "px";
+  // Confetti creation
+  const colors = ['#ff1a75','#ff66cc','#ffccff','#ff99cc'];
+  for(let i=0;i<50;i++){
+    let conf = document.createElement('div');
+    conf.classList.add('confetti');
+    conf.style.left = Math.random()*100 + 'vw';
+    conf.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    conf.style.animationDuration = (2+Math.random()*3)+'s';
+    document.body.appendChild(conf);
   }
 
-  heart.onclick = () => {
-    score++;
-    scoreText.innerText = score;
-    moveHeart();
+  // Optional: heart float effect after move
+  const heart = document.getElementById('heart');
+  setInterval(() => {
+    heart.style.transform = `translate(-50%, -50%) translateY(${Math.sin(Date.now()/300)*10}px)`;
+  }, 50);
 
-    if (score === 5) {
-      heart.style.display = "none";
-      msg.style.display = "block";
-    }
-  };
-
-  moveHeart();
 </script>
-
 </body>
 </html>
+
