@@ -18,7 +18,75 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 50px;
-    height: 50px;
-    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAABpklEQVRoQ+2YP07CQBSFv0s5J1I7ACNkI6ABsARewYfADbhDvAB9gTdhnYl4gkh2TSJwWmxfSycdw7P55bPznOvz5CKeiXEMOSg4gDDMFjXK3YILz5H+O4p4kuRe3lM9LgfRIZyYHTzCKZJtCJJxJq0a77mSDj/K8GRqyaZSPgAF1rVyp9h0d8H5V2sjMP6+fYIGpR0+qIuESQ1hIbA30aJpC+8Q7F0COE1l4ErU7zYdExnHRtdzXQywv8tREnsdfQ1zvG4U5+FBLRXRZpTjQ4epwh4llpxlkn7Dwx7eRh8Ei63J+Vcy7OOVpO6I+wNFA6jLGQ81kSnKr7PhFQozVrcu2A/RCd0+wRuhcC1+E+qyoF2uXVu0eIuixEV3ymJJi87w1hR9j+l0hDFbOZK7Z90PZwO4hvwOJz8nP0+g83hO7gGNwA7swUP2RjVvB6kafjYkH7cT60/vwGdhXNpnmF7F6twAAAABJRU5ErkJggg==') no-repeat center/contain;
-    transform: translate(
+    font-size: 50px;
+    color: red;
+    transform: translate(-50%, -50%);
+    animation: moveHeart 5s linear forwards;
+  }
+
+  @keyframes moveHeart {
+    0% { top: 50%; left: 50%; }
+    100% { top: 20%; left: 80%; }
+  }
+
+  /* Messages */
+  #message {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    font-size: 2rem;
+    color: #ff1a75;
+    opacity: 0;
+    animation: fadeIn 2s forwards 5s;
+  }
+
+  #iLove {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    font-size: 2.5rem;
+    color: #ff0066;
+    opacity: 0;
+    animation: fadeIn 2s forwards 6s;
+  }
+
+  /* Confetti */
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #fcd34d;
+    top: -10px;
+    animation: fall 5s linear infinite;
+  }
+
+  @keyframes fall {
+    0% { top: -10px; transform: rotate(0deg); }
+    100% { top: 100vh; transform: rotate(360deg); }
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+
+<div id="heart">💖</div>
+<div id="message">Happy Birthday! 🎂</div>
+<div id="iLove">I Love You ❤️</div>
+
+<script>
+  // Generate confetti
+  for(let i=0;i<50;i++){
+    let c = document.createElement('div');
+    c.classList.add('confetti');
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+    c.style.animationDuration = 2 + Math.random()*3 + 's';
+    document.body.appendChild(c);
+  }
+</script>
+
+</body>
+</html>
